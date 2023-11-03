@@ -16,8 +16,8 @@ class AuthenticationRepository extends GetxController {
   late Rx<Faculty?> faculty = Rx<Faculty?>(null);
   late SharedPreferences prefs;
 
-  final _auth = FirebaseAuth.instance;
-  late final Rx<User?> firebaseUser;
+  // final _auth = FirebaseAuth.instance;
+  // late final Rx<User?> firebaseUser;
 
   @override
   void onReady() async {
@@ -47,43 +47,42 @@ class AuthenticationRepository extends GetxController {
         : Get.offAll(() => const ScreenNavigator());
   }
 
-  Future<User?> createUserWithNameEmailAndPassword(
-      String email, String password) async {
-    try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+  // Future<User?> createUserWithNameEmailAndPassword(
+  //     String email, String password) async {
+  //   try {
+  //     await _auth.createUserWithEmailAndPassword(
+  //         email: email, password: password);
 
-      if (firebaseUser.value != null) {
-        Get.offAll(() => const ScreenNavigator());
-      }
-      return firebaseUser.value;
-    } on FirebaseAuthException catch (e) {
-      final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
-      showSnackkBar(
-        message: ex.message,
-        title: 'Try Again',
-        icon: const Icon(Icons.error),
-      );
-      // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
-      throw ex;
-    } catch (_) {
-      final ex = SignUpWithEmailAndPasswordFailure();
-      showSnackkBar(
-        message: ex.message,
-        title: 'Try Again',
-        icon: const Icon(Icons.error),
-      );
-      // print('EXCEPTION - ${ex.message}');
-      throw ex;
-    }
-  }
+  //     if (firebaseUser.value != null) {
+  //       Get.offAll(() => const ScreenNavigator());
+  //     }
+  //     return firebaseUser.value;
+  //   } on FirebaseAuthException catch (e) {
+  //     final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
+  //     showSnackkBar(
+  //       message: ex.message,
+  //       title: 'Try Again',
+  //       icon: const Icon(Icons.error),
+  //     );
+  //     // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+  //     throw ex;
+  //   } catch (_) {
+  //     final ex = SignUpWithEmailAndPasswordFailure();
+  //     showSnackkBar(
+  //       message: ex.message,
+  //       title: 'Try Again',
+  //       icon: const Icon(Icons.error),
+  //     );
+  //     // print('EXCEPTION - ${ex.message}');
+  //     throw ex;
+  //   }
+  // }
 
   Future<void> loginUserWithNameEmailAndPassword(
       String email, String password) async {
     try {
       final response = await http.get(
           Uri.parse("$apiUrl/faculty/auth/hinalprajapati@gmail.com/abc@123"));
-      print("hello");
 
       if (response.statusCode == 200) {
         faculty = Rx<Faculty?>(Faculty.fromJson(response.body));

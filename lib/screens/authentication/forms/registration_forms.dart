@@ -85,14 +85,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 FilledButton(
                   child: const Text('Sign Up'),
                   onPressed: () async {
-                    if (formKey.currentState!.validate()) {
-                      final user = UserModel(
-                        name: controller.name.text.trim(),
-                        email: controller.email.text.trim(),
-                        password: controller.password.text.trim(),
-                      );
-                      RegistrationController.instance.createUser(user);
-                    }
+                    //
                   },
                 ),
               ],
