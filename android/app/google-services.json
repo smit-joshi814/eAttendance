@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1011213227517",
+    "project_id": "growth-guards",
+    "storage_bucket": "growth-guards.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011213227517:android:71e0fa2bc19068bfcb7594",
+        "android_client_info": {
+          "package_name": "com.example.design"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3jsABXkRn0q1LbhgY0-06reWEfVxRgtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
