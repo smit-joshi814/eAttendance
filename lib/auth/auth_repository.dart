@@ -81,8 +81,8 @@ class AuthenticationRepository extends GetxController {
   Future<void> loginUserWithNameEmailAndPassword(
       String email, String password) async {
     try {
-      final response = await http.get(
-          Uri.parse("$apiUrl/faculty/auth/hinalprajapati@gmail.com/abc@123"));
+      final response =
+          await http.get(Uri.parse("$apiUrl/faculty/auth/$email/$password"));
 
       if (response.statusCode == 200) {
         faculty = Rx<Faculty?>(Faculty.fromJson(response.body));
