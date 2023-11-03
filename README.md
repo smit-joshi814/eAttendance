@@ -1,4 +1,4 @@
-# design
+# eAttendance
 
 A new Flutter project.
 
