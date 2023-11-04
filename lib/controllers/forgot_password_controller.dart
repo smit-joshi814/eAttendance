@@ -1,4 +1,4 @@
-import 'package:e_attendance/auth/auth_repository.dart';
+import 'package:e_attendance/repositories/auth/auth_repository.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 

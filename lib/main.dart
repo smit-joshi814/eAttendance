@@ -1,4 +1,4 @@
-import 'package:e_attendance/auth/auth_repository.dart';
+import 'package:e_attendance/repositories/auth/auth_repository.dart';
 import 'package:e_attendance/controllers/permissions_controller.dart';
 import 'package:e_attendance/firebase_options.dart';
 import 'package:e_attendance/screens/splash/splash_screen.dart';

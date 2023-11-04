@@ -1,15 +1,14 @@
-import 'package:e_attendance/auth/auth_exceptions.dart';
+import 'package:e_attendance/exceptions/auth/auth_exceptions.dart';
 import 'package:e_attendance/models/faculty_model.dart';
 import 'package:e_attendance/screens/authentication/login.dart';
 import 'package:e_attendance/utility/constants.dart';
 import 'package:e_attendance/utility/utils.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../screens/screen_navigator.dart';
+import '../../screens/screen_navigator.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();

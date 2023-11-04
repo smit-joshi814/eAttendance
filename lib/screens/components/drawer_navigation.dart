@@ -1,6 +1,6 @@
 import 'package:e_attendance/utility/constants.dart';
 import 'package:flutter/material.dart';
-import '../../auth/auth_repository.dart';
+import '../../repositories/auth/auth_repository.dart';
 import '../contact_us/about_us.dart';
 import '../contact_us/contact_us.dart';
 

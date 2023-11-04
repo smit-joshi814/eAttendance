@@ -1,6 +1,6 @@
-import 'package:e_attendance/auth/auth_repository.dart';
+import 'package:e_attendance/repositories/auth/auth_repository.dart';
 import 'package:e_attendance/models/user_model.dart';
-import 'package:e_attendance/user/user_repository.dart';
+import 'package:e_attendance/repositories/user/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

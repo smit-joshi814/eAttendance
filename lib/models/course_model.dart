@@ -1,12 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class Course {
-  int courseId;
-  String courseName;
+  final int courseId;
+  final String courseName;
+
   Course({
     required this.courseId,
     required this.courseName,
   });
+
+  factory Course.fromJson(Map<String, dynamic> json) {
+    return Course(
+      courseId: json['courseId'],
+      courseName: json['courseName'],
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -23,7 +32,13 @@ class Course {
   }
 
   String toJson() => json.encode(toMap());
+}
 
-  factory Course.fromJson(String source) =>
-      Course.fromMap(json.decode(source) as Map<String, dynamic>);
+extension JsonConversion on Course {
+  Map<String, dynamic> toJson() {
+    return {
+      'courseId': courseId,
+      'courseName': courseName,
+    };
+  }
 }

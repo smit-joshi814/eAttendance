@@ -25,6 +25,10 @@ class Semester {
 
   String toJson() => json.encode(toMap());
 
-  factory Semester.fromJson(String source) =>
-      Semester.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Semester.fromJson(Map<String, dynamic> json) {
+    return Semester(
+      semesterId: json['semesterId'],
+      semesterName: json['semesterName'],
+    );
+  }
 }

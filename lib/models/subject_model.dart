@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class Subject {
   int subjectId;
   String subjectName;
@@ -23,8 +22,13 @@ class Subject {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode({
+        'subjectId': subjectId,
+        'subjectName': subjectName,
+      });
 
-  factory Subject.fromJson(String source) =>
-      Subject.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Subject.fromJson(Map<String, dynamic> map) => Subject(
+        subjectId: map['subjectId'] as int,
+        subjectName: map['subjectName'] as String,
+      );
 }
