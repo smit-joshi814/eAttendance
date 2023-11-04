@@ -1,3 +1,4 @@
+import 'package:e_attendance/repositories/attendance/attendance_repository.dart';
 import 'package:e_attendance/repositories/course/course_repository.dart';
 import 'package:e_attendance/repositories/divisions/divisons_repository.dart';
 import 'package:e_attendance/repositories/semsster/semester_repository.dart';
@@ -5,6 +6,8 @@ import 'package:e_attendance/repositories/subject/subject_repository.dart';
 import 'package:e_attendance/screens/components/dropdown_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../repositories/auth/auth_repository.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,10 +17,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final AuthenticationRepository authRepo = Get.find();
   CourseRepository courseRepo = Get.put(CourseRepository());
   SubjectRepository subjectRepo = Get.put(SubjectRepository());
   SemesterRepository semRepo = Get.put(SemesterRepository());
   DivisionsRepository divrepo = Get.put(DivisionsRepository());
+  AttendanceRepository attendRepo = Get.put(AttendanceRepository());
 
   List<DropdownMenuItem<String>> courses = [];
 
@@ -140,7 +145,14 @@ class _HomeState extends State<Home> {
           FilledButton.icon(
             label: const Text('Start Session'),
             icon: const Icon(Icons.wifi),
-            onPressed: () {},
+            onPressed: () {
+              attendRepo.markAttendance(
+                  selectedCourse,
+                  selectedSubject,
+                  selectedSem,
+                  selectedDivision,
+                  authRepo.faculty.value!.facultyId);
+            },
           ),
         ],
       ),

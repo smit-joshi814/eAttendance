@@ -1,4 +1,4 @@
-const String appName = "eAttendance";
+const String appName = "eAttendance Faculty";
 
 const String appLogo = "assets/images/logo.png";
 

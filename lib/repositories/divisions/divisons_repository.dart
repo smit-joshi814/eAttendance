@@ -15,19 +15,20 @@ class DivisionsRepository {
 
       return divisions;
     } else {
-      throw Exception('Failed to load courses');
+      throw Exception('Failed to load Divisions');
     }
   }
 
   Future<List<DropdownMenuItem<String>>> getDivisionDropdownItems() async {
-    List<String> divisions = await getDivisons();
-    return divisions
-        .map((division) => DropdownMenuItem(
-              value: division
-                  .toString(), // Assuming 'id' is the unique identifier for the course
-              child: Text(
-                  division), // Replace 'name' with the actual course name field
+    List<String> divisions =
+        await getDivisons(); // Assuming getDivisions returns a List of String
+    List<DropdownMenuItem<String>> divisionItems = divisions
+        .map((division) => DropdownMenuItem<String>(
+              value: division,
+              child: Text(division),
             ))
         .toList();
+
+    return divisionItems;
   }
 }
