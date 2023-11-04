@@ -1,4 +1,5 @@
 import 'package:e_attendance/repositories/course/course_repository.dart';
+import 'package:e_attendance/repositories/divisions/divisons_repository.dart';
 import 'package:e_attendance/repositories/semsster/semester_repository.dart';
 import 'package:e_attendance/repositories/subject/subject_repository.dart';
 import 'package:e_attendance/screens/components/dropdown_widget.dart';
@@ -16,8 +17,7 @@ class _HomeState extends State<Home> {
   CourseRepository courseRepo = Get.put(CourseRepository());
   SubjectRepository subjectRepo = Get.put(SubjectRepository());
   SemesterRepository semRepo = Get.put(SemesterRepository());
-
-  List<DropdownMenuItem<String>> batch = [];
+  DivisionsRepository divrepo = Get.put(DivisionsRepository());
 
   List<DropdownMenuItem<String>> courses = [];
 
@@ -27,7 +27,6 @@ class _HomeState extends State<Home> {
 
   List<DropdownMenuItem<String>> subjects = [];
 
-  String? selectedBatch;
   String? selectedCourse;
   String? selectedDivision;
   String? selectedSem;
@@ -36,9 +35,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-
-    // Set the default selected values
-    selectedBatch = 'batch_1';
 
     selectedDivision = 'div_1';
 
@@ -61,6 +57,13 @@ class _HomeState extends State<Home> {
       setState(() {
         semesters = value;
         selectedSem = semesters.first.value;
+      });
+    });
+
+    divrepo.getDivisionDropdownItems().then((value) {
+      setState(() {
+        div = value;
+        selectedDivision = div.first.value;
       });
     });
   }
