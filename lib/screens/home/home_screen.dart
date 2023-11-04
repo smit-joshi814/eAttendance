@@ -1,9 +1,10 @@
-import 'package:e_attendance/repositories/attendance/attendance_repository.dart';
+import 'package:e_attendance/repositories/session/session_repository.dart';
 import 'package:e_attendance/repositories/course/course_repository.dart';
 import 'package:e_attendance/repositories/divisions/divisons_repository.dart';
 import 'package:e_attendance/repositories/semsster/semester_repository.dart';
 import 'package:e_attendance/repositories/subject/subject_repository.dart';
 import 'package:e_attendance/screens/components/dropdown_widget.dart';
+import 'package:e_attendance/utility/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +23,7 @@ class _HomeState extends State<Home> {
   SubjectRepository subjectRepo = Get.put(SubjectRepository());
   SemesterRepository semRepo = Get.put(SemesterRepository());
   DivisionsRepository divrepo = Get.put(DivisionsRepository());
-  AttendanceRepository attendRepo = Get.put(AttendanceRepository());
+  SessionRepository sessionRepo = Get.put(SessionRepository());
 
   List<DropdownMenuItem<String>> courses = [];
 
@@ -36,6 +37,9 @@ class _HomeState extends State<Home> {
   String? selectedDivision;
   String? selectedSem;
   String? selectedSubject;
+  String? result;
+  String? sessionText = "Start Session";
+  bool isSession = false;
 
   @override
   void initState() {
@@ -143,15 +147,36 @@ class _HomeState extends State<Home> {
           // FilledButton.icon
 
           FilledButton.icon(
-            label: const Text('Start Session'),
+            label: Text(isSession ? 'Stop Session' : 'Start Session'),
             icon: const Icon(Icons.wifi),
-            onPressed: () {
-              attendRepo.markAttendance(
-                  selectedCourse,
-                  selectedSubject,
-                  selectedSem,
-                  selectedDivision,
-                  authRepo.faculty.value!.facultyId);
+            onPressed: () async {
+              if (!isSession) {
+                result = await sessionRepo.startSession(
+                    selectedCourse,
+                    selectedSubject,
+                    selectedSem,
+                    selectedDivision,
+                    authRepo.faculty.value!.facultyId);
+                setState(() {
+                  result;
+                  isSession = true;
+                });
+                showSnackkBar(
+                    icon: const Icon(Icons.done), title: '', message: result);
+              } else {
+                result = await sessionRepo.stopSession(
+                    selectedCourse,
+                    selectedSubject,
+                    selectedSem,
+                    selectedDivision,
+                    authRepo.faculty.value!.facultyId);
+                setState(() {
+                  result;
+                  isSession = false;
+                });
+                showSnackkBar(
+                    icon: const Icon(Icons.done), title: '', message: result);
+              }
             },
           ),
         ],

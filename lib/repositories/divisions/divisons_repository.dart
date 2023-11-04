@@ -9,9 +9,12 @@ class DivisionsRepository {
   static DivisionsRepository get instance => Get.find();
 
   Future<List<String>> getDivisons() async {
-    final response = await http.get(Uri.parse("$apiUrl/student/getDivisons"));
+    final response = await http.get(Uri.parse("$apiUrl/student/getDivisions"));
     if (response.statusCode == 200) {
-      List<String> divisions = jsonDecode(response.body);
+      List<dynamic> divisionList = jsonDecode(response.body);
+      List<String> divisions = divisionList.map((dynamic division) {
+        return division.toString();
+      }).toList();
 
       return divisions;
     } else {
@@ -22,12 +25,14 @@ class DivisionsRepository {
   Future<List<DropdownMenuItem<String>>> getDivisionDropdownItems() async {
     List<String> divisions =
         await getDivisons(); // Assuming getDivisions returns a List of String
-    List<DropdownMenuItem<String>> divisionItems = divisions
-        .map((division) => DropdownMenuItem<String>(
-              value: division,
-              child: Text(division),
-            ))
-        .toList();
+    List<DropdownMenuItem<String>> divisionItems = [];
+
+    for (String division in divisions) {
+      divisionItems.add(DropdownMenuItem<String>(
+        value: division,
+        child: Text(division),
+      ));
+    }
 
     return divisionItems;
   }
