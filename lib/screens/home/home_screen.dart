@@ -97,6 +97,12 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+
+    // Set the default selected values
+    selectedCourse = 'course_3';
+    selectedDivision = 'div_3';
+    selectedClass = 'class_3';
+    selectedSubject = 'subject_3';
   }
 
   @override
