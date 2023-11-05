@@ -6,7 +6,6 @@ import 'package:e_attendance/controllers/login_controller.dart';
 
 import '../../../utility/constants.dart';
 import '../forgot_password.dart';
-import '../register.dart';
 
 class LoginForm extends StatelessWidget {
   final AnimationController animationController;
@@ -64,15 +63,15 @@ class LoginForm extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                OutlinedButton(
-                  child: const Text('Sign Up'),
-                  onPressed: () async {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RegisterScreen()));
-                  },
-                ),
+                // OutlinedButton(
+                //   child: const Text('Sign Up'),
+                //   onPressed: () async {
+                //     Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => const RegisterScreen()));
+                //   },
+                // ),
                 FilledButton(
                   child: const Text('LogIn'),
                   onPressed: () async {

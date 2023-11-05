@@ -1,4 +1,3 @@
-import 'package:e_attendance/models/user_model.dart';
 import 'package:e_attendance/utility/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

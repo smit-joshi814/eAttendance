@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:e_attendance/utility/constants.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -21,11 +23,12 @@ class SessionRepository {
       String? selectedSem, String? selectedDivision, int facultyId) async {
     final response = await http.get(Uri.parse(
         "$apiUrl/attendance/session/stop/$selectedCourse/$selectedSubject/$selectedSem/$selectedDivision/$facultyId"));
+    log(response.body.toString());
     if (response.statusCode == 200) {
-      String result = response.body;
+      String result = response.body.toString();
       return result;
     } else {
-      throw Exception('Failed to Stop Session');
+      return response.body.toString();
     }
   }
 }
